@@ -1,5 +1,4 @@
 import sys
-
 from boltons.listutils import SplayList, BarrelList
 
 
@@ -14,7 +13,37 @@ def test_splay_list():
     assert splay[-1] == 0
     assert len(splay) == 10
 
+def test_pop_mutant_17():
+    b1 = BarrelList()
+    b1.lists = [[100], [200]]
+    ret = b1.pop()
+    assert ret == 200
+    assert len(b1) == 1
 
+def test_pop_mutant_21():
+    b1 = BarrelList()
+    b1.lists = [[100]]
+    ret = b1.pop(-1)
+    assert ret == 100
+    assert len(b1.lists) == 1
+    
+def test_pop_mutant_22():
+    bl = BarrelList()
+    bl.lists = [[100], [200]]
+    ret = bl.pop(-1)        
+    assert ret == 200
+    assert len(bl.lists) == 1  
+    assert bl.lists == [[100]]
+    
+
+    
+def test_iter_slice_mutant_22():
+    b1 = BarrelList()
+    b1.lists = [[1, 2, 3, 4, 5]]
+    ret = list(b1.iter_slice(-2, None))
+    assert ret == [4,5]
+
+    
 def test_barrel_list():
     bl = BarrelList()
     bl.insert(0, 0)

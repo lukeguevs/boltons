@@ -15,33 +15,33 @@ def test_splay_list():
 
 def test_pop_mutant_17():
     b1 = BarrelList()
-    b1.lists = [[100], [200]]
-    ret = b1.pop()
-    assert ret == 200
-    assert len(b1) == 1
+    b1.lists = [[100], [200]]  # Set up two sublists manually
+    ret = b1.pop()  # Should pop from the last sublist
+    assert ret == 200  # Should return the last element
+    assert len(b1) == 1  # Total length should be 1 after popping
 
 def test_pop_mutant_21():
     b1 = BarrelList()
-    b1.lists = [[100]]
-    ret = b1.pop(-1)
-    assert ret == 100
-    assert len(b1.lists) == 1
+    b1.lists = [[100]]  # Set up single sublist with one element
+    ret = b1.pop(-1)  # Pop the last element using negative index
+    assert ret == 100  # Should return the popped element
+    assert len(b1.lists) == 1  # Should still have 1 sublist (now empty)
     
 def test_pop_mutant_22():
     bl = BarrelList()
-    bl.lists = [[100], [200]]
-    ret = bl.pop(-1)        
-    assert ret == 200
-    assert len(bl.lists) == 1  
-    assert bl.lists == [[100]]
+    bl.lists = [[100], [200]]  # Set up two sublists
+    ret = bl.pop(-1)  # Pop the last element using negative index
+    assert ret == 200  # Should return the last element from second sublist
+    assert len(bl.lists) == 1  # Empty sublist should be cleaned up
+    assert bl.lists == [[100]]  # Only first sublist should remain
     
 
     
 def test_iter_slice_mutant_22():
     b1 = BarrelList()
-    b1.lists = [[1, 2, 3, 4, 5]]
-    ret = list(b1.iter_slice(-2, None))
-    assert ret == [4,5]
+    b1.lists = [[1, 2, 3, 4, 5]]  # Set up single sublist with 5 elements
+    ret = list(b1.iter_slice(-2, None))  # Slice from -2 to end
+    assert ret == [4, 5]  # Should return last 2 elements
 
     
 def test_barrel_list():
